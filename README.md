@@ -38,6 +38,16 @@ Each match holds a list of `maps`. A map can have any of these fields:
 { "dissect": "...", "score": [7, 5] }        // a hand-typed score overrides the replay
 ```
 
+### Scoreboard exports (no replay)
+
+If you only have an end-of-map scoreboard (per-player totals as CSV), use `scoreboard` instead of `dissect`. The CSV can go in as exported, or as the JSON converted from it. A scoreboard has no round results, so `score` is required (team order as usual):
+
+```json
+{ "scoreboard": "replays/A-t1-t2/chalet.csv", "name": "Chalet", "score": [7, 4] }
+```
+
+The match page shows the exported rating, K–D, entries, KOST, KPR, SRV, HS%, clutches and objective plays. There's no round timeline, operators or trades, since the export doesn't include them. Players are matched to teams by roster names; if none match, the file's first team (e.g. "YOUR TEAM") is taken as the match's first team.
+
 ### Forfeited (FF) rounds
 
 Rounds given by forfeit never show up in a replay. `ff` always goes **on a map**, because round scores belong to a map:

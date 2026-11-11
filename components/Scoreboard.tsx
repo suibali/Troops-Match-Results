@@ -19,7 +19,7 @@ const OPERATORS_SHOWN = 3;
 
 const COLUMNS = [
 	{ label: "Player", title: "Player" },
-	{ label: "Operators", title: "Most played operators" },
+	{ label: "Operators", title: "Most played operators", replayOnly: true },
 	{ label: "Rating", title: "Rating — 1.00 is an average game" },
 	{ label: "K–D", title: "Kills – deaths" },
 	{ label: "+/−", title: "Kill/death difference" },
@@ -29,9 +29,12 @@ const COLUMNS = [
 	{ label: "SRV", title: "% of rounds survived" },
 	{ label: "HS%", title: "Headshot percentage" },
 	{ label: "1vX", title: "Clutches won" },
-	{ label: "Plants", title: "Defuser plants" },
-	{ label: "Trades", title: "Trade kills" },
+	{ label: "Plants", title: "Defuser plants", scoreboardLabel: "Obj", scoreboardTitle: "Objective plays (plants and disables)" },
+	{ label: "Trades", title: "Trade kills", replayOnly: true },
 ];
+
+// Scoreboard imports have no operators or kill feed, so those columns are dropped
+type Variant = "replay" | "scoreboard";
 
 // UI
 
@@ -40,12 +43,16 @@ export default function Scoreboard({
 	lines,
 	outcome,
 	mvp,
+	variant = "replay",
 }: {
 	team: ResolvedTeam | null;
 	lines: PlayerLine[];
 	outcome?: "win" | "loss";
 	mvp?: string;
+	variant?: Variant;
 }) {
+	const isReplay = variant === "replay";
+	const columns = COLUMNS.filter((column) => isReplay || !column.replayOnly);
 	return (
 		<section className="panel">
 			<div className="team-bar" style={{ boxShadow: `inset 3px 0 0 ${team?.color ?? "var(--line-strong)"}` }}>
@@ -56,12 +63,12 @@ export default function Scoreboard({
 				{outcome && <span className={`outcome is-${outcome}`}>{outcome === "win" ? "Victory" : "Defeat"}</span>}
 			</div>
 			<div className="scoreboard-wrap">
-				<table className="scoreboard">
+				<table className={`scoreboard is-${variant}`}>
 					<thead>
 						<tr>
-							{COLUMNS.map((column) => (
-								<th key={column.label} title={column.title}>
-									{column.label}
+							{columns.map((column) => (
+								<th key={column.label} title={(!isReplay && column.scoreboardTitle) || column.title}>
+									{(!isReplay && column.scoreboardLabel) || column.label}
 								</th>
 							))}
 						</tr>
@@ -76,13 +83,15 @@ export default function Scoreboard({
 										{line.username}
 										{mvp === line.username && <span className="mvp">MVP</span>}
 									</td>
-									<td>
-										<span className="op-list">
-											{getTopOperators(line.operators, OPERATORS_SHOWN).map((operator) => (
-												<OperatorIcon key={operator} name={operator} rounds={line.operators[operator]} />
-											))}
-										</span>
-									</td>
+									{isReplay && (
+										<td>
+											<span className="op-list">
+												{getTopOperators(line.operators, OPERATORS_SHOWN).map((operator) => (
+													<OperatorIcon key={operator} name={operator} rounds={line.operators[operator]} />
+												))}
+											</span>
+										</td>
+									)}
 									<td className="rating">
 										<span className={`rating-cell tone-${getRatingTone(line.rating)}`}>{line.rating.toFixed(2)}</span>
 									</td>
@@ -100,7 +109,7 @@ export default function Scoreboard({
 									<td>{formatPercent(line.hsPct)}</td>
 									<td>{line.clutches}</td>
 									<td>{line.plants}</td>
-									<td>{line.trades}</td>
+									{isReplay && <td>{line.trades}</td>}
 								</tr>
 							);
 						})}

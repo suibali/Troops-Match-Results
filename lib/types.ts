@@ -37,6 +37,8 @@ export interface MapConfig {
 	// FF rounds for this map. With no `dissect` or `score`, the map was forfeited outright
 	// Path (from the project root) to an `r6-dissect <folder> -o x.json` file
 	dissect?: string;
+	// Path to an end-of-map scoreboard export (.csv or .json) when there's no replay
+	scoreboard?: string;
 	ff?: FfConfig | FfConfig[];
 }
 
@@ -201,9 +203,11 @@ export interface PlayerLine extends PlayerCounts {
 }
 
 export interface MapStats {
+	// "scoreboard" maps have player totals only: no rounds, no score
+	source: "replay" | "scoreboard";
 	rounds: RoundSummary[];
 	players: [PlayerLine[], PlayerLine[]];
-	score: [number, number];
+	score: [number, number] | null;
 }
 
 export interface ResolvedMap {

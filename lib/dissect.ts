@@ -336,6 +336,7 @@ export function readMapStats(match: DissectMatch, rosters: [string[], string[]])
 
 	const last = rounds[rounds.length - 1];
 	return {
+		source: "replay",
 		rounds,
 		players: [sortLines(players[0]), sortLines(players[1])],
 		score: last ? last.scoreAfter : [0, 0],

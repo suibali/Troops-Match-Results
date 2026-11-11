@@ -156,6 +156,19 @@
 					"ff": { "number": 3, "team": "t5" }
 				}
 			]
+		},
+		{
+			"teams": [
+				"t2",
+				"t6"
+			],
+			"date": "2026-11-21T17:00:00Z",
+			"maps": [
+				{
+					"dissect": "replays/teaxs_typo.json",
+					"score": [7, 4]
+				}
+			]
 		}
 		
 	],

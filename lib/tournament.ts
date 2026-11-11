@@ -37,6 +37,7 @@ import path from "node:path";
 import { cache } from "react";
 import { loadDissect, readMapName, readMapStats } from "./dissect";
 import { getMapDisplayName, getMapImage, getMapKey } from "./maps";
+import { isScoreboardFile, loadScoreboard, readScoreboardStats } from "./scoreboard";
 import type {
 	FfConfig,
 	GroupConfig,
@@ -233,19 +234,29 @@ function resolveMap(config: MapConfig, index: number, rosters: [string[], string
 	let name = config.name ?? null;
 	let error: string | undefined;
 
-	if (config.dissect) {
+	// `dissect` takes a replay or a scoreboard export; `scoreboard` is the explicit form
+	const statsPath = config.dissect ?? config.scoreboard;
+	if (statsPath) {
 		try {
-			const match = loadDissect(config.dissect);
-			stats = readMapStats(match, rosters);
-			name ??= readMapName(match);
+			if (isScoreboardFile(statsPath)) {
+				const file = loadScoreboard(statsPath);
+				stats = readScoreboardStats(file, rosters);
+				name ??= file.map ?? null;
+			} else {
+				const match = loadDissect(statsPath);
+				stats = readMapStats(match, rosters);
+				name ??= readMapName(match);
+			}
 		} catch (cause) {
-			error = `Could not read ${config.dissect}: ${(cause as Error).message}`;
+			error = `Could not read ${statsPath}: ${(cause as Error).message}`;
 		}
+		// A scoreboard has no round results, so the score has to come from the JSON
+		if (stats?.source === "scoreboard" && !config.score) error = `${statsPath} has player stats but no score: add "score": [x, y] to this map`;
 	}
 
 	const ffRounds = getFfRounds(toList(config.ff), teamIds, `${where} map ${index + 1}`);
 	const hasFf = ffRounds[0] + ffRounds[1] > 0;
-	const isForfeit = hasFf && !config.dissect && !config.score;
+	const isForfeit = hasFf && !config.dissect && !config.scoreboard && !config.score;
 	const playedScore = config.score ?? stats?.score ?? (hasFf ? [0, 0] : null);
 	const score: [number, number] | null = playedScore ? [playedScore[0] + ffRounds[0], playedScore[1] + ffRounds[1]] : null;
 	const winner: Side | null = score && score[0] !== score[1] ? (score[0] > score[1] ? 0 : 1) : null;

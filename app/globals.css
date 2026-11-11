@@ -1468,16 +1468,27 @@ table {
 	width: 17%;
 }
 
-.scoreboard th:nth-child(2) {
+.scoreboard.is-replay th:nth-child(2) {
 	width: 12%;
 }
 
-.scoreboard th:nth-child(3) {
+.scoreboard.is-replay th:nth-child(3) {
 	width: 9%;
 }
 
-.scoreboard th:nth-child(6) {
+.scoreboard.is-replay th:nth-child(6),
+.scoreboard.is-scoreboard th:nth-child(5) {
 	width: 10%;
+}
+
+.scoreboard.is-scoreboard {
+	min-width: 760px;
+}
+
+/* Rating sits in column 2 when the operators column is dropped */
+.scoreboard.is-scoreboard th:nth-child(2),
+.scoreboard.is-scoreboard td:nth-child(2) {
+	text-align: right;
 }
 
 .scoreboard td:first-child {
@@ -1748,4 +1759,13 @@ table {
 	font-size: 12px;
 	color: var(--accent);
 	letter-spacing: 0.02em;
+}
+
+.source-note {
+	margin-top: 16px;
+	padding: 10px 14px;
+	border-left: 3px solid var(--line-strong);
+	background: var(--panel);
+	font-size: 13px;
+	color: var(--muted);
 }

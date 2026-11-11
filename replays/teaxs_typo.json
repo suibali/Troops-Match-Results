@@ -1,0 +1,157 @@
+{
+	"source": "scoreboard",
+	"map": "Chalet",
+	"rounds": 11,
+	"teams": [
+		{
+			"name": "YOUR TEAM",
+			"players": [
+				{
+					"username": "kameser",
+					"rating": 0.67,
+					"kills": 5,
+					"deaths": 8,
+					"entryKills": 0,
+					"entryDeaths": 2,
+					"kost": 0.3636,
+					"kpr": 0.45,
+					"srv": 0.27,
+					"hsPct": 0.6,
+					"clutches": 0,
+					"objectivePlays": 1
+				},
+				{
+					"username": "Deckedleopard",
+					"rating": 1.7,
+					"kills": 16,
+					"deaths": 7,
+					"entryKills": 2,
+					"entryDeaths": 1,
+					"kost": 0.8182,
+					"kpr": 1.45,
+					"srv": 0.36,
+					"hsPct": 0.25,
+					"clutches": 2,
+					"objectivePlays": 0
+				},
+				{
+					"username": "nigelkp",
+					"rating": 0.49,
+					"kills": 3,
+					"deaths": 9,
+					"entryKills": 1,
+					"entryDeaths": 3,
+					"kost": 0.3636,
+					"kpr": 0.27,
+					"srv": 0.18,
+					"hsPct": 0.33,
+					"clutches": 0,
+					"objectivePlays": 0
+				},
+				{
+					"username": "BaliDOOM.SR",
+					"rating": 1.84,
+					"kills": 17,
+					"deaths": 6,
+					"entryKills": 1,
+					"entryDeaths": 1,
+					"kost": 0.8182,
+					"kpr": 1.55,
+					"srv": 0.45,
+					"hsPct": 0.53,
+					"clutches": 2,
+					"objectivePlays": 2
+				},
+				{
+					"username": "SE4XT",
+					"rating": 0.58,
+					"kills": 3,
+					"deaths": 8,
+					"entryKills": 0,
+					"entryDeaths": 0,
+					"kost": 0.4545,
+					"kpr": 0.27,
+					"srv": 0.27,
+					"hsPct": 0.67,
+					"clutches": 0,
+					"objectivePlays": 0
+				}
+			]
+		},
+		{
+			"name": "ENEMY TEAM",
+			"players": [
+				{
+					"username": "Fluxz007",
+					"rating": 0.68,
+					"kills": 7,
+					"deaths": 11,
+					"entryKills": 2,
+					"entryDeaths": 0,
+					"kost": 0.3636,
+					"kpr": 0.64,
+					"srv": 0.0,
+					"hsPct": 0.43,
+					"clutches": 0,
+					"objectivePlays": 0
+				},
+				{
+					"username": "Pr1nkle",
+					"rating": 1.37,
+					"kills": 12,
+					"deaths": 8,
+					"entryKills": 2,
+					"entryDeaths": 0,
+					"kost": 0.8182,
+					"kpr": 1.09,
+					"srv": 0.27,
+					"hsPct": 0.5,
+					"clutches": 0,
+					"objectivePlays": 1
+				},
+				{
+					"username": "typo_yk",
+					"rating": 1.08,
+					"kills": 10,
+					"deaths": 8,
+					"entryKills": 0,
+					"entryDeaths": 1,
+					"kost": 0.5455,
+					"kpr": 0.91,
+					"srv": 0.27,
+					"hsPct": 0.5,
+					"clutches": 0,
+					"objectivePlays": 0
+				},
+				{
+					"username": "KingJilla",
+					"rating": 0.67,
+					"kills": 5,
+					"deaths": 9,
+					"entryKills": 2,
+					"entryDeaths": 1,
+					"kost": 0.4545,
+					"kpr": 0.45,
+					"srv": 0.18,
+					"hsPct": 0.4,
+					"clutches": 0,
+					"objectivePlays": 0
+				},
+				{
+					"username": "DRH-Actimel",
+					"rating": 0.66,
+					"kills": 4,
+					"deaths": 9,
+					"entryKills": 1,
+					"entryDeaths": 2,
+					"kost": 0.4545,
+					"kpr": 0.36,
+					"srv": 0.18,
+					"hsPct": 0.5,
+					"clutches": 1,
+					"objectivePlays": 1
+				}
+			]
+		}
+	]
+}

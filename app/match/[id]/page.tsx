@@ -55,26 +55,36 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 	return { title: `${getTeamLabel(match, 0)} vs ${getTeamLabel(match, 1)} · ${match.title}` };
 }
 
+// Series rating is the rounds-weighted average of map ratings, so maps rated by a
+// scoreboard export and maps rated from replays combine the same way
 function aggregateLines(maps: ResolvedMap[]): [PlayerLine[], PlayerLine[]] {
-	const totals = new Map<string, { side: Side; name: string; counts: PlayerCounts }>();
+	const totals = new Map<string, { side: Side; name: string; counts: PlayerCounts; weightedRating: number }>();
 	for (const map of maps) {
 		if (!map.stats) continue;
 		for (const side of SIDES) {
 			for (const line of map.stats.players[side]) {
 				const key = `${side}:${line.username.toLowerCase()}`;
-				const entry = totals.get(key) ?? { side, name: line.username, counts: emptyCounts() };
+				const entry = totals.get(key) ?? { side, name: line.username, counts: emptyCounts(), weightedRating: 0 };
 				addCounts(entry.counts, line);
+				entry.weightedRating += line.rating * line.rounds;
 				totals.set(key, entry);
 			}
 		}
 	}
 	const out: [PlayerLine[], PlayerLine[]] = [[], []];
-	for (const { side, name, counts } of totals.values()) out[side].push(buildLine(name, side, counts));
+	for (const { side, name, counts, weightedRating } of totals.values()) {
+		const line = buildLine(name, side, counts);
+		out[side].push({ ...line, rating: counts.rounds > 0 ? weightedRating / counts.rounds : line.rating });
+	}
 	return [sortLines(out[0]), sortLines(out[1])];
 }
 
 function emptyCounts(): PlayerCounts {
 	return { rounds: 0, kills: 0, deaths: 0, assists: 0, headshots: 0, entryKills: 0, entryDeaths: 0, kostRounds: 0, survived: 0, trades: 0, clutches: 0, plants: 0, multiKills: 0, operators: {} };
+}
+
+function getVariant(maps: ResolvedMap[]): "replay" | "scoreboard" {
+	return maps.some((map) => map.stats?.source === "scoreboard") ? "scoreboard" : "replay";
 }
 
 function getMvp(lines: [PlayerLine[], PlayerLine[]]): string | undefined {
@@ -234,12 +244,29 @@ function Rosters({ match }: { match: ResolvedMatch }) {
 	);
 }
 
-function Glossary() {
+function Glossary({ variant = "replay" }: { variant?: "replay" | "scoreboard" }) {
 	return (
 		<p className="stat-glossary">
-			<b>Rating</b> blends kills per round, survival, KOST and opening duels against fixed baselines (1.00 = average game).{" "}
+			{variant === "scoreboard" ? (
+				<>
+					<b>Rating</b> as exported with the scoreboard (series ratings are averaged by rounds played).{" "}
+				</>
+			) : (
+				<>
+					<b>Rating</b> blends kills per round, survival, KOST and opening duels against fixed baselines (1.00 = average game).{" "}
+				</>
+			)}
 			<b>KOST</b> rounds with a kill, objective (plant / disable), survival or trade. <b>Entry</b> opening kill – opening death.{" "}
-			<b>Trades</b> kills on a player who killed a teammate within the previous 10 seconds.
+			{variant === "replay" && (
+				<>
+					<b>Trades</b> kills on a player who killed a teammate within the previous 10 seconds.
+				</>
+			)}
+			{variant === "scoreboard" && (
+				<>
+					<b>Obj</b> objective plays (plants and disables).
+				</>
+			)}
 		</p>
 	);
 }
@@ -272,7 +299,7 @@ function MapPanel({ match, map }: { match: ResolvedMatch; map: ResolvedMap }) {
 					</div>
 					{map.score && (
 						<div className="map-banner-score">
-							{map.stats && (
+							{map.stats && map.stats.rounds.length > 0 && (
 								<div className="halves">
 									<span />
 									<span className="atk">ATK</span>
@@ -301,13 +328,17 @@ function MapPanel({ match, map }: { match: ResolvedMatch; map: ResolvedMap }) {
 
 			{map.stats ? (
 				<>
-					<RoundTimeline rounds={map.stats.rounds} teams={timelineTeams} />
+					{map.stats.source === "scoreboard" ? (
+						<div className="source-note">Stats from a scoreboard export: no round-by-round data, operators or trades for this map.</div>
+					) : (
+						<RoundTimeline rounds={map.stats.rounds} teams={timelineTeams} />
+					)}
 					<div className="scoreboards">
 						{SIDES.map((side) => (
-							<Scoreboard key={side} team={teams[side]} lines={map.stats!.players[side]} outcome={getOutcome(map.winner, side)} mvp={getMvp(map.stats!.players)} />
+							<Scoreboard key={side} team={teams[side]} lines={map.stats!.players[side]} outcome={getOutcome(map.winner, side)} mvp={getMvp(map.stats!.players)} variant={map.stats!.source} />
 						))}
 					</div>
-					<Glossary />
+					<Glossary variant={map.stats.source} />
 				</>
 			) : map.isForfeit ? (
 				<div className="empty-state">
@@ -370,10 +401,10 @@ function OverviewPanel({ match }: { match: ResolvedMatch }) {
 				<>
 					<div className="scoreboards">
 						{SIDES.map((side) => (
-							<Scoreboard key={side} team={teams[side]} lines={lines[side]} outcome={getOutcome(match.winner, side)} mvp={getMvp(lines)} />
+							<Scoreboard key={side} team={teams[side]} lines={lines[side]} outcome={getOutcome(match.winner, side)} mvp={getMvp(lines)} variant={getVariant(match.maps)} />
 						))}
 					</div>
-					<Glossary />
+					<Glossary variant={getVariant(match.maps)} />
 				</>
 			) : (
 				<div style={{ marginTop: 20 }}>
