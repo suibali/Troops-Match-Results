@@ -3,97 +3,117 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Match stats: rounds 1–5</title>
+<title>Match archive</title>
 <style>
-:root{--bg:#0e1424;--panel:#17203a;--panel2:#1d2848;--line:#2a3860;--text:#e8ecf7;--muted:#8d9ac0;--win:#f2c14e;--good:#4fd08a;--mid:#e0a63a;--bad:#e5645f;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#0e1424;--panel:#17203a;--line:#2a3860;--text:#e8ecf7;--muted:#8d9ac0;--win:#f2c14e;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Bahnschrift,"Segoe UI",system-ui,sans-serif;line-height:1.4;padding:24px 16px 40px}
 main{max-width:1100px;margin:0 auto}
 h1{font-size:2rem;margin:0 0 4px}
-h2{font-size:1.15rem;margin:36px 0 12px;font-weight:600}
-.sub{color:var(--muted);margin:0}
-.wrap{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:6px}
-table{border-collapse:collapse;width:100%;min-width:900px}
-th,td{padding:10px 12px;text-align:center;white-space:nowrap}
-th{color:var(--muted);font-weight:500;font-size:.85rem;border-bottom:1px solid var(--line)}
-td:first-child,th:first-child{text-align:left}
-tbody tr+tr td{border-top:1px solid var(--line)}
-.name{font-weight:600}.tag{color:var(--muted);font-size:.8rem;margin-left:6px}
-.good{color:var(--good)}.mid{color:var(--mid)}.bad{color:var(--bad)}.dim{color:var(--muted)}
-.rt{font-weight:700;font-size:1.05rem}
-.ops{font-size:.85rem;color:var(--muted)}
-.score{display:flex;align-items:center;justify-content:center;gap:20px;font-size:3rem;font-weight:700;margin:8px 0 4px}
+.sub{color:var(--muted);margin:0 0 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+a.card{display:block;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px}
+a.card:hover,a.card:focus-visible{border-color:var(--win);outline:none}
+.date{color:var(--muted);font-size:.85rem;min-height:1.2em}
+.title{font-weight:600;font-size:1.1rem;margin:4px 0 10px}
+.teams{color:var(--muted);font-size:.9rem}
+.score{display:flex;align-items:baseline;gap:10px;font-size:2rem;font-weight:700;margin-top:4px}
 .score .w{color:var(--win)}
-.map{text-align:center;color:var(--muted);margin:0 0 16px}
-.strip{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px;margin-bottom:16px;overflow-x:auto}
-.strip table{min-width:560px}
-.strip td,.strip th{padding:4px 3px;font-size:.8rem}
-.strip td.t{text-align:left;font-weight:600;padding-right:10px}
-.c{display:block;height:26px;line-height:26px;border-radius:4px;background:var(--panel2);color:var(--muted)}
-.c.w{background:var(--win);color:#1a1405;font-weight:700}
-.teams{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.team{background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow-x:auto}
-.team h3{margin:0;padding:12px 14px;font-size:1.1rem;border-bottom:1px solid var(--line)}
-.team.win h3{color:var(--win)}
-.team table{min-width:360px}
-.team tfoot td{border-top:1px solid var(--line);color:var(--muted)}
-.note{color:var(--muted);font-size:.85rem;margin-top:12px;max-width:75ch}
-@media(max-width:760px){.teams{grid-template-columns:1fr}}
+.score .d{color:var(--muted);font-weight:400}
+.msg{color:var(--muted);max-width:70ch}
 </style>
 </head>
 <body>
 <main>
-<h1>Match stats, rounds 1–5</h1>
-<p class="sub">Custom game, Bomb. Site: 2F Armory Lockers, 2F Archives. The match is set to 13 rounds; five are loaded.</p>
-
-<h2>Players</h2>
-<div class="wrap"><table>
-<thead><tr><th>Player</th><th>Rating</th><th>KD (+/-)</th><th>Entry (+/-)</th><th>Rounds</th><th>KOST</th><th>KPR</th><th>SRV</th><th>1vX</th><th>Plants</th><th>Disable</th><th>HS%</th><th>Atk</th><th>Def</th></tr></thead>
-<tbody>
-<tr><td><span class="name">benniedekat1</span><span class="tag">YOUR TEAM</span></td><td class="rt good">1.64</td><td>5-1 (+4)</td><td>0-0 (0)</td><td>5</td><td class="good">80%</td><td class="good">1.00</td><td class="good">80%</td><td>0</td><td>0</td><td>0</td><td>40</td><td class="ops">Ash, Dokkaebi</td><td class="ops">Azami, Doc ×2</td></tr>
-<tr><td><span class="name">harlng</span><span class="tag">YOUR TEAM</span></td><td class="rt good">1.43</td><td>5-3 (+2)</td><td>2-1 (+1)</td><td>5</td><td class="good">80%</td><td class="good">1.00</td><td class="mid">40%</td><td>0</td><td>0</td><td>0</td><td>80</td><td class="ops">Ace, Twitch</td><td class="ops">Valkyrie, Tubarão, Warden</td></tr>
-<tr><td><span class="name">HxQx.</span><span class="tag">YOUR TEAM</span></td><td class="rt good">1.36</td><td>4-2 (+2)</td><td>0-1 (-1)</td><td>5</td><td class="good">80%</td><td class="mid">0.80</td><td class="good">60%</td><td>0</td><td>0</td><td>0</td><td>25</td><td class="ops">Blackbeard, Striker</td><td class="ops">Thorn ×2, Skopos</td></tr>
-<tr><td><span class="name">GXLAXY_</span><span class="tag">YOUR TEAM</span></td><td class="rt mid">1.02</td><td>2-2 (0)</td><td>1-0 (+1)</td><td>5</td><td class="good">80%</td><td class="bad">0.40</td><td class="good">60%</td><td>0</td><td>0</td><td>0</td><td>100</td><td class="ops">Deimos, Blitz</td><td class="ops">Mira ×3</td></tr>
-<tr><td><span class="name">o_Deepp</span><span class="tag">ENEMY TEAM</span></td><td class="rt bad">0.54</td><td>3-4 (-1)</td><td>1-2 (-1)</td><td>5</td><td class="bad">20%</td><td class="mid">0.60</td><td class="bad">20%</td><td>0</td><td>0</td><td>0</td><td>33</td><td class="ops">Ace, Flores, Ying</td><td class="ops">Goyo, Sentry</td></tr>
-<tr><td><span class="name">k8led_</span><span class="tag">ENEMY TEAM</span></td><td class="rt bad">0.51</td><td>2-4 (-2)</td><td>1-0 (+1)</td><td>5</td><td class="bad">40%</td><td class="bad">0.40</td><td class="bad">20%</td><td>0</td><td>0</td><td>0</td><td>100</td><td class="ops">Lion ×2, Ace</td><td class="ops">Ela ×2</td></tr>
-<tr><td><span class="name">RepZ4</span><span class="tag">ENEMY TEAM</span></td><td class="rt bad">0.34</td><td>1-4 (-3)</td><td>0-0 (0)</td><td>5</td><td class="bad">40%</td><td class="bad">0.20</td><td class="bad">20%</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="ops">Nomad ×3</td><td class="ops">Thorn, Smoke</td></tr>
-<tr><td><span class="name">KingJilla</span><span class="tag">ENEMY TEAM</span></td><td class="rt bad">0.19</td><td>1-4 (-3)</td><td>0-1 (-1)</td><td>5</td><td class="bad">20%</td><td class="bad">0.20</td><td class="bad">20%</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="ops">Ash ×2, Montagne</td><td class="ops">Kaid ×2</td></tr>
-</tbody></table></div>
-<p class="note">Rating is an approximation, since siege.gg’s formula isn’t public: an HLTV 2.0-style blend of KOST, KPR, deaths per round and impact, with a flat baseline in place of ADR. KOST counts a kill, a survival or a trade (a teammate avenging your death within 5 seconds); the files hold no plant or defuse events.</p>
-
-<h2>Map summary</h2>
-<div class="score"><span class="w">4</span><span class="dim">|</span><span>1</span></div>
-<p class="map">YOUR TEAM vs ENEMY TEAM, after round 5</p>
-
-<div class="strip"><table>
-<thead><tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th></tr></thead>
-<tbody>
-<tr><td class="t">YOUR TEAM</td><td><span class="c w">DEF</span></td><td><span class="c">ATK</span></td><td><span class="c w">DEF</span></td><td><span class="c w">ATK</span></td><td><span class="c w">DEF</span></td><td><span class="c"></span></td><td><span class="c"></span></td><td><span class="c"></span></td><td><span class="c"></span></td><td><span class="c"></span></td><td><span class="c"></span></td><td><span class="c"></span></td><td><span class="c"></span></td></tr>
-<tr><td class="t">ENEMY TEAM</td><td><span class="c">ATK</span></td><td><span class="c w">DEF</span></td><td><span class="c">ATK</span></td><td><span class="c">DEF</span></td><td><span class="c">ATK</span></td><td><span class="c"></span></td><td><span class="c"></span></td><td><span class="c"></span></td><td><span class="c"></span></td><td><span class="c"></span></td><td><span class="c"></span></td><td><span class="c"></span></td><td><span class="c"></span></td></tr>
-</tbody></table></div>
-
-<div class="teams">
-<section class="team win"><h3>YOUR TEAM</h3><table>
-<thead><tr><th>Player</th><th>KD</th><th>KOST</th><th>1st kill</th></tr></thead>
-<tbody>
-<tr><td>benniedekat1</td><td>5-1</td><td>80%</td><td>0</td></tr>
-<tr><td>harlng</td><td>5-3</td><td>80%</td><td>2</td></tr>
-<tr><td>HxQx.</td><td>4-2</td><td>80%</td><td>0</td></tr>
-<tr><td>GXLAXY_</td><td>2-2</td><td>80%</td><td>1</td></tr>
-</tbody>
-<tfoot><tr><td>Team</td><td>16-8</td><td></td><td>3</td></tr></tfoot></table></section>
-<section class="team"><h3>ENEMY TEAM</h3><table>
-<thead><tr><th>Player</th><th>KD</th><th>KOST</th><th>1st kill</th></tr></thead>
-<tbody>
-<tr><td>o_Deepp</td><td>3-4</td><td>20%</td><td>1</td></tr>
-<tr><td>k8led_</td><td>2-4</td><td>40%</td><td>1</td></tr>
-<tr><td>RepZ4</td><td>1-4</td><td>40%</td><td>0</td></tr>
-<tr><td>KingJilla</td><td>1-4</td><td>20%</td><td>0</td></tr>
-</tbody>
-<tfoot><tr><td>Team</td><td>7-16</td><td></td><td>2</td></tr></tfoot></table></section>
-</div>
-<p class="note">In round 5, HxQx. is credited with killing harlng, a teammate. It’s counted as harlng’s death but not as a kill for HxQx. (Dissect’s raw output counts it, which would make his KD 5-2). The broadcast graphic’s EPS column is left out because its formula isn’t known, and the files don’t name the map.</p>
+<h1>Match archive</h1>
+<p class="sub" id="count">Loading matches…</p>
+<div class="grid" id="grid"></div>
+<p class="msg" id="msg"></p>
 </main>
+<script>
+// Folder that holds the match pages. Only fill in owner and repo if the site
+// uses a custom domain; on a github.io address they are detected automatically.
+const CONFIG = { owner: '', repo: '', folder: 'matches' };
+
+function repoInfo() {
+  if (CONFIG.owner && CONFIG.repo) return CONFIG;
+  const host = location.hostname;
+  if (!host.endsWith('.github.io')) return null;
+  const owner = host.split('.')[0];
+  const repo = location.pathname.split('/')[1] || owner + '.github.io';
+  return { owner, repo, folder: CONFIG.folder };
+}
+
+async function listFiles() {
+  const info = repoInfo();
+  if (info) {
+    try {
+      const r = await fetch('https://api.github.com/repos/' + info.owner + '/' + info.repo + '/contents/' + CONFIG.folder);
+      if (r.ok) {
+        const items = await r.json();
+        return items.filter(f => f.type === 'file' && /\.html?$/i.test(f.name)).map(f => f.name);
+      }
+    } catch (e) { /* fall through to matches.json */ }
+  }
+  const r = await fetch('matches.json');
+  if (!r.ok) throw new Error('No file list available');
+  return await r.json();
+}
+
+async function readMatch(name) {
+  const r = await fetch(CONFIG.folder + '/' + encodeURIComponent(name));
+  if (!r.ok) throw new Error(name);
+  const doc = new DOMParser().parseFromString(await r.text(), 'text/html');
+  const meta = n => { const m = doc.querySelector('meta[name="' + n + '"]'); return m ? m.content.trim() : ''; };
+  return {
+    name,
+    title: doc.title || name.replace(/\.html?$/i, ''),
+    date: meta('match-date'),
+    teams: meta('match-teams'),
+    score: meta('match-score')
+  };
+}
+
+function card(m) {
+  const a = document.createElement('a');
+  a.className = 'card';
+  a.href = CONFIG.folder + '/' + encodeURIComponent(m.name);
+  const add = (cls, text) => { const d = document.createElement('div'); d.className = cls; d.textContent = text; a.appendChild(d); return d; };
+  add('date', m.date);
+  add('title', m.title);
+  if (m.teams) add('teams', m.teams);
+  const parts = m.score.split('-').map(s => s.trim());
+  if (parts.length === 2 && parts[0] !== '' && parts[1] !== '') {
+    const s = add('score', '');
+    const x = Number(parts[0]), y = Number(parts[1]);
+    [[parts[0], x > y], ['|', null], [parts[1], y > x]].forEach(([t, win]) => {
+      const sp = document.createElement('span');
+      sp.textContent = t;
+      if (win === null) sp.className = 'd'; else if (win) sp.className = 'w';
+      s.appendChild(sp);
+    });
+  }
+  return a;
+}
+
+(async () => {
+  const count = document.getElementById('count');
+  const msg = document.getElementById('msg');
+  try {
+    const names = await listFiles();
+    const results = await Promise.allSettled(names.map(readMatch));
+    const matches = results.filter(r => r.status === 'fulfilled').map(r => r.value);
+    matches.sort((a, b) => (b.date || '').localeCompare(a.date || '') || a.name.localeCompare(b.name));
+    const grid = document.getElementById('grid');
+    matches.forEach(m => grid.appendChild(card(m)));
+    count.textContent = matches.length === 1 ? '1 match' : matches.length + ' matches';
+    if (!matches.length) msg.textContent = 'No match pages found. Add .html files to the ' + CONFIG.folder + ' folder.';
+  } catch (e) {
+    count.textContent = 'Couldn’t load the match list';
+    msg.textContent = 'The list is read from the ' + CONFIG.folder + ' folder on GitHub, so this only works once the site is live on a public repository. When previewing locally, open the folder with a local web server, or add a matches.json file listing the page names.';
+  }
+})();
+</script>
 </body>
 </html>
