@@ -1,0 +1,220 @@
+{
+	"name": "Siege Tourney",
+	"edition": "Season 1 · 2026",
+	"format": {
+		"groupBestOf": 1,
+		"playoffBestOf": {
+			"R1": 1,
+			"LB-R1": 1,
+			"LB-QF": 1,
+			"UB-SF": 3,
+			"LB-SF": 3,
+			"UB-F": 3,
+			"LB-F": 3,
+			"GF": 3
+		},
+		"grandFinalAdvantage": 1,
+		"roundsToWin": 7,
+		"points": {
+			"win": 3,
+			"otWin": 2,
+			"otLoss": 1,
+			"loss": 0
+		}
+	},
+	"teams": [
+		{
+			"id": "t1",
+			"name": "Team1",
+			"tag": "T1",
+			"players": [
+				"T1_P1",
+				"T1_P2",
+				"T1_P3",
+				"T1_P4",
+				"T1_P5"
+			]
+		},
+		{
+			"id": "t2",
+			"name": "Team2",
+			"tag": "T2",
+			"players": [
+				"T2_P1",
+				"T2_P2",
+				"T2_P3",
+				"T2_P4",
+				"T2_P5"
+			]
+		},
+		{
+			"id": "t3",
+			"name": "Team3",
+			"tag": "T3",
+			"players": [
+				"T3_P1",
+				"T3_P2",
+				"T3_P3",
+				"T3_P4",
+				"T3_P5"
+			]
+		},
+		{
+			"id": "t4",
+			"name": "Team4",
+			"tag": "T4",
+			"players": [
+				"T4_P1",
+				"T4_P2",
+				"T4_P3",
+				"T4_P4",
+				"T4_P5"
+			]
+		},
+		{
+			"id": "t5",
+			"name": "Team5",
+			"tag": "T5",
+			"players": [
+				"T5_P1",
+				"T5_P2",
+				"T5_P3",
+				"T5_P4",
+				"T5_P5"
+			]
+		},
+		{
+			"id": "t6",
+			"name": "Team6",
+			"tag": "T6",
+			"players": [
+				"T6_P1",
+				"T6_P2",
+				"T6_P3",
+				"T6_P4",
+				"T6_P5"
+			]
+		},
+		{
+			"id": "t7",
+			"name": "Team7",
+			"tag": "T7",
+			"players": [
+				"T7_P1",
+				"T7_P2",
+				"T7_P3",
+				"T7_P4",
+				"T7_P5"
+			]
+		},
+		{
+			"id": "t8",
+			"name": "Team8",
+			"tag": "T8",
+			"players": [
+				"T8_P1",
+				"T8_P2",
+				"T8_P3",
+				"T8_P4",
+				"T8_P5"
+			]
+		}
+	],
+	"groups": [
+		{
+			"id": "A",
+			"name": "Group A",
+			"teams": [
+				"t1",
+				"t3",
+				"t5",
+				"t7"
+			]
+		},
+		{
+			"id": "B",
+			"name": "Group B",
+			"teams": [
+				"t2",
+				"t4",
+				"t6",
+				"t8"
+			]
+		}
+	],
+	"groupMatches": [
+		{
+			"teams": [
+				"t3",
+				"t5"
+			],
+			"date": "2026-11-21T17:00:00Z",
+			"maps": [
+				{
+					"dissect": "replays/snipez_khaled.json",
+					"name" : "Border",
+					"ff": { "number": 3, "team": "t5" }
+				}
+			]
+		}
+		
+	],
+	"playoffs": {
+		"R1-1": {
+			"date": "2026-12-05T17:00:00Z",
+			"maps": []
+		},
+		"R1-2": {
+			"date": "2026-12-05T18:00:00Z",
+			"maps": []
+		},
+		"R1-3": {
+			"date": "2026-12-05T19:00:00Z",
+			"maps": []
+		},
+		"R1-4": {
+			"date": "2026-12-05T20:00:00Z",
+			"maps": []
+		},
+		"UB-SF1": {
+			"date": "2026-12-06T17:00:00Z",
+			"maps": []
+		},
+		"UB-SF2": {
+			"date": "2026-12-06T19:00:00Z",
+			"maps": []
+		},
+		"LB-R1-1": {
+			"date": "2026-12-06T21:00:00Z",
+			"maps": []
+		},
+		"LB-R1-2": {
+			"date": "2026-12-06T22:00:00Z",
+			"maps": []
+		},
+		"LB-QF1": {
+			"date": "2026-12-12T17:00:00Z",
+			"maps": []
+		},
+		"LB-QF2": {
+			"date": "2026-12-12T18:00:00Z",
+			"maps": []
+		},
+		"UB-F": {
+			"date": "2026-12-12T19:30:00Z",
+			"maps": []
+		},
+		"LB-SF": {
+			"date": "2026-12-13T15:00:00Z",
+			"maps": []
+		},
+		"LB-F": {
+			"date": "2026-12-13T17:00:00Z",
+			"maps": []
+		},
+		"GF": {
+			"date": "2026-12-13T19:30:00Z",
+			"maps": []
+		}
+	}
+}
